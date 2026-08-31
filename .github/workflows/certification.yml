@@ -29,15 +29,10 @@ concurrency:
 jobs:
   call:
     uses: ansible-collections/partner-certification-checker/.github/workflows/certification-reusable.yml@v2.0.0 # zizmor: ignore[unpinned-uses]
-    # If the minimal Ansible Core version your collection supports Ansible
-    # is greater than 2.16.0, specify it below.
-    # You might also have to specify Python version supported by that version,
-    # see https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix
-    # with:
-    #   ansible-core-version: '2.17.0'
-    #   python-versions: '["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]'
-    #   collection-root: 'ansible_collections/junipernetworks/junos'
-    #   automation-hub: true
+    with:
+      # Pin ansible-core to 2.18 — ansible-lint 24.12.2 crashes on 2.21+
+      # (ansible.parsing.yaml.constructor removed in ansible-core 2.21)
+      ansible-core-version: '2.18.0'
     # Uncomment the lines below if you have 'automation-hub: true' and need to install collections from Red Hat Ansible Automation Hub.
     # This requires setting a repository secret called 'AH_TOKEN' which value contains a Red Hat Ansible Automation Hub token.
     # secrets:
